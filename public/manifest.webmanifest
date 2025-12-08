@@ -1,0 +1,27 @@
+{
+  "name": "PlantLog",
+  "short_name": "PlantLog",
+  "description": "Plant care logger",
+  "theme_color": "#ffffff",
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "start_url": "/plantlog/",
+  "icons": [
+    {
+      "src": "/plantlog/plant_64.png",
+      "sizes": "64x64",
+      "type": "image/png"
+    },
+    {
+      "src": "/plantlog/plant_512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "/plantlog/plant_512_blank.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
