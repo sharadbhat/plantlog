@@ -2,8 +2,8 @@
   "name": "PlantLog",
   "short_name": "PlantLog",
   "description": "Plant care logger",
-  "theme_color": "#ffebcd",
-  "background_color": "#ffebcd",
+  "theme_color": "#ffefd7",
+  "background_color": "#ffefd7",
   "display": "standalone",
   "start_url": "/plantlog/",
   "icons": [
