@@ -1,7 +1,7 @@
 import logo from "/plant_512_blank.png";
 import "./index.css";
 
-function Header() {
+const Header = () => {
   return (
     <div className="header-container">
       <div className="header-content">
@@ -9,6 +9,6 @@ function Header() {
       </div>
     </div>
   );
-}
+};
 
 export default Header;
