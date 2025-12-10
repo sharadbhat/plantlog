@@ -1,10 +1,6 @@
 import type { ContextModalProps } from "@mantine/modals";
 
-const AddFormModal = ({
-  context,
-  id,
-  innerProps,
-}: ContextModalProps<{ modalBody: string }>) => {
+const AddFormModal = () => {
   return <div>Add Form</div>;
 };
 
