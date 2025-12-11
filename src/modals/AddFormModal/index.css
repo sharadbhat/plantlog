@@ -1,0 +1,17 @@
+.add-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.modal-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.temp-inputs {
+  display: flex;
+  gap: 10px;
+}

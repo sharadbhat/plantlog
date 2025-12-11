@@ -1,9 +1,9 @@
 import { AppShell, MantineProvider } from "@mantine/core";
 import { ModalsProvider } from "@mantine/modals";
-import Header from "./components/Header";
-import "@mantine/core/styles.css";
 import Footer from "./components/Footer";
-import AddFormModal from "./components/AddFormModal";
+import Header from "./components/Header";
+import AddFormModal from "./modals/AddFormModal";
+import "@mantine/core/styles.css";
 
 function App() {
   return (

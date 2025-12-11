@@ -6,7 +6,9 @@ const Footer = () => {
   const openModal = () => {
     modals.openContextModal({
       modal: "addFormModal",
-      title: "Add New Plant",
+      title: "Add a new plant",
+      closeOnClickOutside: false,
+      radius: "lg",
       innerProps: {},
     });
   };
