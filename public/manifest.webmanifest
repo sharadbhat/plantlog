@@ -6,6 +6,7 @@
   "background_color": "#ffefd7",
   "display": "standalone",
   "start_url": "/plantlog/",
+  "scope": "/plantlog/",
   "icons": [
     {
       "src": "/plantlog/plant_64.png",
