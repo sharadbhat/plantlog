@@ -1,6 +1,6 @@
 import { Card, Text } from "@mantine/core";
 import type { Plant } from "../../types";
-import "./index.css";
+import classes from "./index.module.css";
 
 const PlantCard = (plantProps: Plant) => {
   const details = [
@@ -35,9 +35,11 @@ const PlantCard = (plantProps: Plant) => {
   };
 
   return (
-    <Card withBorder padding="lg" radius="md" className={"card"}>
-      <Text className={"title"}>{plantProps.name}</Text>
-      <Card.Section className={"footer"}>{renderDetails()}</Card.Section>
+    <Card withBorder radius="md" className={classes.card}>
+      <Card.Section className={classes.header}>
+        <Text className={classes.title}>{plantProps.name}</Text>
+      </Card.Section>
+      <Card.Section className={classes.footer}>{renderDetails()}</Card.Section>
     </Card>
   );
 };
