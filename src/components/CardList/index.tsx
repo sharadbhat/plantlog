@@ -7,7 +7,7 @@ const CardList = () => {
   return (
     <div>
       {plants.map((plant) => (
-        <div key={plant.id}>
+        <div key={plant.id} style={{ marginBottom: "10px" }}>
           <PlantCard {...plant} />
         </div>
       ))}
