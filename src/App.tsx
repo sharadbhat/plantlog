@@ -1,5 +1,6 @@
 import { AppShell, MantineProvider } from "@mantine/core";
 import { ModalsProvider } from "@mantine/modals";
+import CardList from "./components/CardList";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import AddFormModal from "./modals/AddFormModal";
@@ -22,7 +23,9 @@ function App() {
           >
             <Header />
           </AppShell.Header>
-          <AppShell.Main>Main content</AppShell.Main>
+          <AppShell.Main>
+            <CardList />
+          </AppShell.Main>
           <AppShell.Footer
             withBorder={false}
             style={{

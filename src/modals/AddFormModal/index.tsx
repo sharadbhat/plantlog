@@ -7,15 +7,13 @@ import {
   TextInput,
 } from "@mantine/core";
 import { useForm } from "@mantine/form";
+import useAddPlant from "../../hooks/useAddPlant";
+import { SunlightExposure } from "../../types";
 import "./index.css";
 
-export const SunlightExposure = {
-  LOW: "Low",
-  MEDIUM: "Medium",
-  HIGH: "High",
-} as const;
-
 const AddFormModal = ({ context, id }: ContextModalProps) => {
+  const { addPlant } = useAddPlant();
+
   const addForm = useForm({
     validateInputOnBlur: true,
     initialValues: {
@@ -35,11 +33,22 @@ const AddFormModal = ({ context, id }: ContextModalProps) => {
     },
   });
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const submitForm = (values: any) => {
+    addPlant({
+      name: values.name,
+      description: values.description,
+      wateringFrequencyDays: values.wateringInterval,
+      sunlightExposure: values.sunlightExposure,
+      lowTempThreshold: values.lowTempThreshold,
+      highTempThreshold: values.highTempThreshold,
+    });
+
+    context.closeModal(id);
+  };
+
   return (
-    <form
-      className="add-form"
-      onSubmit={addForm.onSubmit((values) => console.log(values))}
-    >
+    <form className="add-form" onSubmit={addForm.onSubmit(submitForm)}>
       <TextInput
         withAsterisk
         label="Plant Name"
