@@ -5,7 +5,6 @@ const useAddPlant = () => {
   const addPlant = (plant: PlantInput) => {
     const plantId = "";
     const dateAdded = new Date();
-    const lastWateredDate = null;
 
     const newPlant: Plant = {
       id: plantId,
@@ -13,7 +12,7 @@ const useAddPlant = () => {
       name: plant.name,
       description: plant.description,
       wateringFrequencyDays: plant.wateringFrequencyDays,
-      lastWateredDate,
+      lastWateredDate: plant.lastWateredDate,
       sunlightExposure: plant.sunlightExposure,
       lowTempThreshold: plant.lowTempThreshold,
       highTempThreshold: plant.highTempThreshold,

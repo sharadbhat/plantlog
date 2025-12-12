@@ -1,7 +1,7 @@
 export const SunlightExposure = {
-  LOW: "Low",
-  MEDIUM: "Medium",
-  HIGH: "High",
+  SHADE: "Shade",
+  PARTIAL_SHADE: "Partial Shade",
+  FULL_SUN: "Full Sun",
 } as const;
 
 export type Plant = {
@@ -10,13 +10,13 @@ export type Plant = {
   name: string;
   description?: string;
   wateringFrequencyDays: number;
-  lastWateredDate: Date | null;
+  lastWateredDate: Date;
   sunlightExposure: typeof SunlightExposure;
   lowTempThreshold?: number;
   highTempThreshold?: number;
 };
 
-export type PlantInput = Omit<Plant, "id" | "dateAdded" | "lastWateredDate">;
+export type PlantInput = Omit<Plant, "id" | "dateAdded">;
 
 export type PlantStore = {
   plants: Array<Plant>;

@@ -1,10 +1,10 @@
+import classes from "./index.module.css";
 import logo from "/plant_512_blank.png";
-import "./index.css";
 
 const Header = () => {
   return (
-    <div className="header-container">
-      <div className="header-content">
+    <div className={classes.headerContainer}>
+      <div className={classes.headerContent}>
         <img src={logo} alt="PlantLog Logo" height={50} />
       </div>
     </div>

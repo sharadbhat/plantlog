@@ -5,6 +5,7 @@ import Footer from "./components/Footer";
 import Header from "./components/Header";
 import AddFormModal from "./modals/AddFormModal";
 import "@mantine/core/styles.css";
+import "@mantine/dates/styles.css";
 
 function App() {
   return (

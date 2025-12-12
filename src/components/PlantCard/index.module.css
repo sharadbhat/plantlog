@@ -3,18 +3,32 @@
 }
 
 .header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
   padding: var(--mantine-spacing-sm) var(--mantine-spacing-md);
   border-bottom: 1px solid
     light-dark(var(--mantine-color-gray-2), var(--mantine-color-dark-5));
 }
 
-.footer {
-  display: flex;
-  justify-content: space-between;
+.icon {
+  flex-shrink: 0;
+  flex-grow: 0;
+}
+
+.chevron {
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+
+.details {
   padding: var(--mantine-spacing-sm) var(--mantine-spacing-md);
 }
 
 .title {
+  width: 100%;
   font-weight: 600;
   line-height: 1;
   font-size: var(--mantine-font-size-sm);
