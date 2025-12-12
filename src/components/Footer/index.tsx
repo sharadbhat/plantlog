@@ -13,11 +13,6 @@ const Footer = () => {
       transitionProps: {
         transition: "fade",
       },
-      styles: {
-        body: {
-          height: "100px",
-        },
-      },
       innerProps: {},
     });
   };
