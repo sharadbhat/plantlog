@@ -6,16 +6,34 @@ import {
   Textarea,
   TextInput,
   Stepper,
+  ActionIcon,
+  Menu,
+  Flex,
+  ColorPicker,
 } from "@mantine/core";
 import { DatePickerInput } from "@mantine/dates";
 import { useForm } from "@mantine/form";
+import { IconPencil } from "@tabler/icons-react";
 import { useState } from "react";
+import { CONSTANTS } from "../../constants";
 import useAddPlant from "../../hooks/useAddPlant";
 import { SunlightExposure } from "../../types";
 import classes from "./index.module.css";
 
+const STEP_COUNT = 5;
+
 const AddFormModal = ({ context, id }: ContextModalProps) => {
   const [activeStep, setActiveStep] = useState(0);
+  const [chosenIcon, setChosenIcon] = useState(
+    CONSTANTS.ICON_MAP["icon-plant"]
+  );
+  const [chosenIconColor, setChosenIconColor] = useState(
+    CONSTANTS.DEFAULT_PLANT_ICON_COLOR
+  );
+  const [tryingOutIconColor, setTryingOutIconColor] = useState(
+    CONSTANTS.DEFAULT_PLANT_ICON_COLOR
+  );
+  const [menuOpened, setMenuOpened] = useState(false);
   const { addPlant } = useAddPlant();
 
   const addForm = useForm({
@@ -58,7 +76,9 @@ const AddFormModal = ({ context, id }: ContextModalProps) => {
     if (addForm.validate().hasErrors) {
       return;
     }
-    setActiveStep((current) => (current < 5 ? current + 1 : current));
+    setActiveStep((current) =>
+      current < STEP_COUNT - 1 ? current + 1 : current
+    );
   };
 
   const moveToPreviousStep = () => {
@@ -67,6 +87,8 @@ const AddFormModal = ({ context, id }: ContextModalProps) => {
 
   const submitForm = (values: typeof addForm.values) => {
     addPlant({
+      iconName: chosenIcon.name as keyof typeof CONSTANTS.ICON_MAP,
+      iconColor: chosenIconColor,
       name: values.name,
       description: values.description,
       wateringFrequencyDays: values.wateringInterval,
@@ -80,7 +102,7 @@ const AddFormModal = ({ context, id }: ContextModalProps) => {
   };
 
   const renderStepButtons = () => {
-    const shouldShowNextButton = activeStep < 5;
+    const shouldShowNextButton = activeStep < STEP_COUNT - 1;
     const shouldShowBackButton = activeStep > 0;
 
     return (
@@ -128,12 +150,57 @@ const AddFormModal = ({ context, id }: ContextModalProps) => {
     );
   };
 
+  const setIconAndColor = (
+    icon: (typeof CONSTANTS.ICON_MAP)[keyof typeof CONSTANTS.ICON_MAP]
+  ) => {
+    setChosenIcon(icon);
+    setChosenIconColor(tryingOutIconColor);
+    setMenuOpened(false);
+  };
+
+  const renderIconGrid = () => {
+    const iconMap = CONSTANTS.ICON_MAP;
+
+    // Split the icon map into rows of 4
+    const iconMapRows = [];
+    for (let i = 0; i < Object.keys(iconMap).length; i += 4) {
+      iconMapRows.push(Object.values(iconMap).slice(i, i + 4));
+    }
+
+    return (
+      <Flex direction={"column"} rowGap={"lg"} p={"md"}>
+        <ColorPicker
+          withPicker={false}
+          format="hex"
+          size="lg"
+          value={tryingOutIconColor}
+          onChange={setTryingOutIconColor}
+          swatches={[...CONSTANTS.PLANT_ICON_COLOR_SWATCHES]}
+        />
+        {iconMapRows.map((row, index) => (
+          <Flex direction={"row"} justify={"space-between"} key={index}>
+            {row.map((icon) => (
+              <div
+                role="button"
+                className={classes.iconWrapper}
+                onClick={() => setIconAndColor(icon)}
+              >
+                <icon.icon color={tryingOutIconColor} size={40} />
+              </div>
+            ))}
+          </Flex>
+        ))}
+      </Flex>
+    );
+  };
+
   return (
     <div
       style={{
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-between",
+        height: "100%",
       }}
     >
       <Stepper
@@ -145,18 +212,34 @@ const AddFormModal = ({ context, id }: ContextModalProps) => {
         }}
       >
         <Stepper.Step>
-          <div>Name your plant!</div>
+          <div>Give your plant a name!</div>
+          <div className={classes.iconPickerWrapper}>
+            <div className={classes.plantIconWrapper}>
+              <Menu opened={menuOpened} onClose={() => setMenuOpened(false)}>
+                <Menu.Target>
+                  <ActionIcon
+                    variant="default"
+                    size={"input-xl"}
+                    onClick={() => setMenuOpened(true)}
+                  >
+                    <chosenIcon.icon color={chosenIconColor} size={40} />
+                  </ActionIcon>
+                </Menu.Target>
+                <Menu.Dropdown>{renderIconGrid()}</Menu.Dropdown>
+                <div className={classes.pencilIcon}>
+                  <IconPencil size={20} />
+                </div>
+              </Menu>
+            </div>
+          </div>
           <TextInput
-            withAsterisk
-            label="Plant Name"
-            placeholder="Enter plant name"
+            placeholder="Name your plant"
             key={addForm.key("name")}
             className={classes.plantNameInput}
             {...addForm.getInputProps("name")}
           />
           <Textarea
-            label="Description"
-            placeholder="Enter plant description"
+            placeholder="Describe your plant"
             key={addForm.key("description")}
             {...addForm.getInputProps("description")}
           />
@@ -172,8 +255,6 @@ const AddFormModal = ({ context, id }: ContextModalProps) => {
             key={addForm.key("wateringInterval")}
             {...addForm.getInputProps("wateringInterval")}
           />
-        </Stepper.Step>
-        <Stepper.Step>
           <div>When was it last watered?</div>
           <DatePickerInput
             label="Last Watered Date"

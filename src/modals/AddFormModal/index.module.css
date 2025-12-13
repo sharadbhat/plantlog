@@ -9,3 +9,36 @@
   display: flex;
   gap: 10px;
 }
+
+.iconPickerWrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.plantIconWrapper {
+  display: inline-block;
+  position: relative;
+}
+
+.pencilIcon {
+  position: absolute;
+  border: 0.0625rem solid var(--mantine-color-default-border);
+  background-color: var(--mantine-color-default);
+  bottom: -10px;
+  right: -10px;
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-self: center;
+  align-items: center;
+}
+
+.iconWrapper {
+  padding: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

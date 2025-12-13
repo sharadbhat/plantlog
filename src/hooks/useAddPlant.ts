@@ -9,6 +9,8 @@ const useAddPlant = () => {
     const newPlant: Plant = {
       id: plantId,
       dateAdded,
+      iconName: plant.iconName,
+      iconColor: plant.iconColor,
       name: plant.name,
       description: plant.description,
       wateringFrequencyDays: plant.wateringFrequencyDays,

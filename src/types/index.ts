@@ -1,3 +1,5 @@
+import type { CONSTANTS } from "../constants";
+
 export const SunlightExposure = {
   SHADE: "Shade",
   PARTIAL_SHADE: "Partial Shade",
@@ -7,6 +9,8 @@ export const SunlightExposure = {
 export type Plant = {
   id: string;
   dateAdded: Date;
+  iconName: keyof typeof CONSTANTS.ICON_MAP;
+  iconColor: string;
   name: string;
   description?: string;
   wateringFrequencyDays: number;

@@ -1,5 +1,5 @@
 import { Card, Grid, Text } from "@mantine/core";
-import { IconChevronRight, IconPlant } from "@tabler/icons-react";
+import { IconChevronRight } from "@tabler/icons-react";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import { useCallback } from "react";
@@ -93,15 +93,17 @@ const PlantCard = (plantProps: Plant) => {
     ));
   };
 
+  const Icon = CONSTANTS.ICON_MAP[plantProps.iconName].icon;
+
   return (
     <Card withBorder radius="md" className={classes.card}>
       <Card.Section>
         <div className={classes.header}>
-          <IconPlant
+          <Icon
             className={classes.icon}
             size={24}
             stroke={2}
-            color="#0d5b15ff"
+            color={plantProps.iconColor}
           />
           <Text className={classes.title} truncate={"end"}>
             {plantProps.name}

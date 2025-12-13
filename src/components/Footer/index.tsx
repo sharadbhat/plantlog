@@ -1,25 +1,16 @@
-import { modals } from "@mantine/modals";
 import { IconSquareRoundedPlus } from "@tabler/icons-react";
 import { CONSTANTS } from "../../constants";
+import { openAddFormModal } from "../../utils/modalOpener";
 import classes from "./index.module.css";
 
 const Footer = () => {
-  const openModal = () => {
-    modals.openContextModal({
-      modal: "addFormModal",
-      closeOnClickOutside: false,
-      radius: "lg",
-      fullScreen: true,
-      transitionProps: {
-        transition: "fade",
-      },
-      innerProps: {},
-    });
-  };
-
   return (
     <div className={classes.footerContainer}>
-      <div className={classes.footerContent} role="button" onClick={openModal}>
+      <div
+        className={classes.footerContent}
+        role="button"
+        onClick={openAddFormModal}
+      >
         <IconSquareRoundedPlus size={50} color={CONSTANTS.ICON_COLOR} />
       </div>
     </div>
