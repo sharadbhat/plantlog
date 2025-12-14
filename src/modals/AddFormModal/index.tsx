@@ -111,6 +111,7 @@ const AddFormModal = ({ context, id }: ContextModalProps) => {
           <Button
             fullWidth
             radius="xl"
+            size="md"
             disabled={Object.keys(addForm.errors).length > 0}
             onClick={moveToNextStep}
           >
@@ -121,6 +122,7 @@ const AddFormModal = ({ context, id }: ContextModalProps) => {
             fullWidth
             type="submit"
             radius="xl"
+            size="md"
             onClick={() => submitForm(addForm.values)}
             disabled={Object.keys(addForm.errors).length > 0}
           >
@@ -131,6 +133,7 @@ const AddFormModal = ({ context, id }: ContextModalProps) => {
           <Button
             fullWidth
             variant="outline"
+            size="md"
             radius="xl"
             onClick={moveToPreviousStep}
           >
@@ -141,6 +144,7 @@ const AddFormModal = ({ context, id }: ContextModalProps) => {
           fullWidth
           variant="outline"
           color="red"
+          size="md"
           radius="xl"
           onClick={() => context.closeModal(id)}
         >
@@ -241,6 +245,7 @@ const AddFormModal = ({ context, id }: ContextModalProps) => {
               placeholder="Name your plant"
               key={addForm.key("name")}
               radius={"md"}
+              size="lg"
               styles={{
                 input: {
                   backgroundColor: "var(--mantine-color-myColor-0)",
@@ -252,6 +257,7 @@ const AddFormModal = ({ context, id }: ContextModalProps) => {
               placeholder="Describe your plant"
               key={addForm.key("description")}
               radius={"md"}
+              size="lg"
               styles={{
                 input: {
                   backgroundColor: "var(--mantine-color-myColor-0)",
@@ -269,6 +275,7 @@ const AddFormModal = ({ context, id }: ContextModalProps) => {
               placeholder="Enter watering frequency in days"
               min={1}
               key={addForm.key("wateringInterval")}
+              size="lg"
               styles={{
                 input: {
                   backgroundColor: "var(--mantine-color-myColor-0)",
@@ -282,6 +289,7 @@ const AddFormModal = ({ context, id }: ContextModalProps) => {
               placeholder="Select last watered date"
               maxDate={new Date()}
               key={addForm.key("lastWateredDate")}
+              size="lg"
               styles={{
                 input: {
                   backgroundColor: "var(--mantine-color-myColor-0)",
@@ -326,6 +334,7 @@ const AddFormModal = ({ context, id }: ContextModalProps) => {
                   backgroundColor: "var(--mantine-color-myColor-0)",
                 },
               }}
+              size="lg"
               {...addForm.getInputProps("lowTempThreshold")}
             />
             <NumberInput
@@ -337,6 +346,7 @@ const AddFormModal = ({ context, id }: ContextModalProps) => {
                   backgroundColor: "var(--mantine-color-myColor-0)",
                 },
               }}
+              size="lg"
               {...addForm.getInputProps("highTempThreshold")}
             />
           </div>

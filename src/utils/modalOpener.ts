@@ -16,6 +16,7 @@ export const openAddFormModal = () => {
       body: {
         height: `calc(100% - 60px)`,
         backgroundColor: "var(--mantine-color-myColor-1)",
+        paddingBottom: 50,
       },
     },
     innerProps: {},
