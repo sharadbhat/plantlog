@@ -15,7 +15,7 @@ import {
 import { DatePickerInput } from "@mantine/dates";
 import { useForm } from "@mantine/form";
 import { IconPencil } from "@tabler/icons-react";
-import { Fragment, useState } from "react";
+import { useState } from "react";
 import { CONSTANTS } from "../../constants";
 import useAddPlant from "../../hooks/useAddPlant";
 import classes from "./index.module.css";
