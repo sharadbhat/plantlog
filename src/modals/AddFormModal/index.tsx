@@ -1,7 +1,6 @@
 import type { ContextModalProps } from "@mantine/modals";
 import {
   Button,
-  NativeSelect,
   NumberInput,
   Textarea,
   TextInput,
@@ -10,14 +9,15 @@ import {
   Menu,
   Flex,
   ColorPicker,
+  Radio,
+  Text,
 } from "@mantine/core";
 import { DatePickerInput } from "@mantine/dates";
 import { useForm } from "@mantine/form";
 import { IconPencil } from "@tabler/icons-react";
-import { useState } from "react";
+import { Fragment, useState } from "react";
 import { CONSTANTS } from "../../constants";
 import useAddPlant from "../../hooks/useAddPlant";
-import { SunlightExposure } from "../../types";
 import classes from "./index.module.css";
 
 const STEP_COUNT = 5;
@@ -25,7 +25,7 @@ const STEP_COUNT = 5;
 const AddFormModal = ({ context, id }: ContextModalProps) => {
   const [activeStep, setActiveStep] = useState(0);
   const [chosenIcon, setChosenIcon] = useState(
-    CONSTANTS.ICON_MAP["icon-plant"]
+    CONSTANTS.ICON_MAP["ICON_PLANT"]
   );
   const [chosenIconColor, setChosenIconColor] = useState(
     CONSTANTS.DEFAULT_PLANT_ICON_COLOR
@@ -42,7 +42,7 @@ const AddFormModal = ({ context, id }: ContextModalProps) => {
       description: "",
       wateringInterval: 7,
       lastWateredDate: new Date(),
-      sunlightExposure: SunlightExposure,
+      sunlightExposure: CONSTANTS.PLANT_LIGHT_OPTIONS[0].value,
       lowTempThreshold: 50,
       highTempThreshold: 90,
     },
@@ -195,102 +195,148 @@ const AddFormModal = ({ context, id }: ContextModalProps) => {
   };
 
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "space-between",
-        height: "100%",
-      }}
-    >
+    <div className={classes.formWrapper}>
       <Stepper
         active={activeStep}
         styles={{
           steps: {
             display: "none",
           },
+          content: {
+            paddingTop: 0,
+          },
         }}
       >
         <Stepper.Step>
-          <div>Give your plant a name!</div>
-          <div className={classes.iconPickerWrapper}>
-            <div className={classes.plantIconWrapper}>
-              <Menu opened={menuOpened} onClose={() => setMenuOpened(false)}>
-                <Menu.Target>
-                  <ActionIcon
-                    variant="default"
-                    size={"input-xl"}
-                    onClick={() => setMenuOpened(true)}
-                  >
-                    <chosenIcon.icon color={chosenIconColor} size={40} />
-                  </ActionIcon>
-                </Menu.Target>
-                <Menu.Dropdown>{renderIconGrid()}</Menu.Dropdown>
-                <div className={classes.pencilIcon}>
-                  <IconPencil size={20} />
-                </div>
-              </Menu>
+          <Flex direction={"column"} gap={"lg"}>
+            <div>Give your plant a name!</div>
+            <div className={classes.iconPickerWrapper}>
+              <div className={classes.plantIconWrapper}>
+                <Menu
+                  opened={menuOpened}
+                  onClose={() => setMenuOpened(false)}
+                  radius={"md"}
+                >
+                  <Menu.Target>
+                    <div onClick={() => setMenuOpened(true)}>
+                      <ActionIcon
+                        variant="default"
+                        size={"input-xl"}
+                        className={classes.actionIcon}
+                      >
+                        <chosenIcon.icon color={chosenIconColor} size={40} />
+                      </ActionIcon>
+                      <div className={classes.pencilIcon}>
+                        <IconPencil size={20} />
+                      </div>
+                    </div>
+                  </Menu.Target>
+                  <Menu.Dropdown className={classes.iconMenuDropdown}>
+                    {renderIconGrid()}
+                  </Menu.Dropdown>
+                </Menu>
+              </div>
             </div>
-          </div>
-          <TextInput
-            placeholder="Name your plant"
-            key={addForm.key("name")}
-            className={classes.plantNameInput}
-            {...addForm.getInputProps("name")}
-          />
-          <Textarea
-            placeholder="Describe your plant"
-            key={addForm.key("description")}
-            {...addForm.getInputProps("description")}
-          />
+            <TextInput
+              placeholder="Name your plant"
+              key={addForm.key("name")}
+              radius={"md"}
+              styles={{
+                input: {
+                  backgroundColor: "var(--mantine-color-myColor-0)",
+                },
+              }}
+              {...addForm.getInputProps("name")}
+            />
+            <Textarea
+              placeholder="Describe your plant"
+              key={addForm.key("description")}
+              radius={"md"}
+              styles={{
+                input: {
+                  backgroundColor: "var(--mantine-color-myColor-0)",
+                },
+              }}
+              {...addForm.getInputProps("description")}
+            />
+          </Flex>
         </Stepper.Step>
         <Stepper.Step>
-          <div>How often do you water it?</div>
-          <NumberInput
-            withAsterisk
-            required
-            label="Watering Frequency (days)"
-            placeholder="Enter watering frequency in days"
-            min={1}
-            key={addForm.key("wateringInterval")}
-            {...addForm.getInputProps("wateringInterval")}
-          />
-          <div>When was it last watered?</div>
-          <DatePickerInput
-            label="Last Watered Date"
-            placeholder="Select last watered date"
-            maxDate={new Date()}
-            key={addForm.key("lastWateredDate")}
-            {...addForm.getInputProps("lastWateredDate")}
-          />
+          <Flex direction={"column"} gap={"lg"}>
+            <div>How often do you water it?</div>
+            <NumberInput
+              label="Watering Frequency (days)"
+              placeholder="Enter watering frequency in days"
+              min={1}
+              key={addForm.key("wateringInterval")}
+              styles={{
+                input: {
+                  backgroundColor: "var(--mantine-color-myColor-0)",
+                },
+              }}
+              {...addForm.getInputProps("wateringInterval")}
+            />
+            <div>When was it last watered?</div>
+            <DatePickerInput
+              label="Last Watered Date"
+              placeholder="Select last watered date"
+              maxDate={new Date()}
+              key={addForm.key("lastWateredDate")}
+              styles={{
+                input: {
+                  backgroundColor: "var(--mantine-color-myColor-0)",
+                },
+              }}
+              {...addForm.getInputProps("lastWateredDate")}
+            />
+          </Flex>
         </Stepper.Step>
         <Stepper.Step>
-          <div>How much sun?</div>
-          <NativeSelect
-            withAsterisk
-            required
-            label="Sunlight Exposure"
-            data={Object.entries(SunlightExposure).map(([key, value]) => ({
-              value: key,
-              label: value,
-            }))}
+          <Radio.Group
             key={addForm.key("sunlightExposure")}
             {...addForm.getInputProps("sunlightExposure")}
-          />
+          >
+            <Flex direction={"column"} gap={"md"}>
+              <Text>How much sun does it need?</Text>
+              {CONSTANTS.PLANT_LIGHT_OPTIONS.map((option) => (
+                <Radio.Card
+                  p={"md"}
+                  radius={"md"}
+                  key={option.value}
+                  className={classes.radioCard}
+                  value={option.value}
+                >
+                  <Flex direction={"row"} gap={"md"} align={"center"}>
+                    {option.label}
+                  </Flex>
+                </Radio.Card>
+              ))}
+            </Flex>
+          </Radio.Group>
         </Stepper.Step>
         <Stepper.Step>
-          <div>Optional: Temperature Thresholds</div>
+          <div>Temperature Thresholds</div>
           <div className={classes.tempInputs}>
             <NumberInput
               label="Min Temp (°F)"
               placeholder="Enter min temp"
               key={addForm.key("lowTempThreshold")}
+              styles={{
+                input: {
+                  backgroundColor: "var(--mantine-color-myColor-0)",
+                },
+              }}
               {...addForm.getInputProps("lowTempThreshold")}
             />
             <NumberInput
               label="Max Temp (°F)"
               placeholder="Enter max temp"
               key={addForm.key("highTempThreshold")}
+              styles={{
+                input: {
+                  backgroundColor: "var(--mantine-color-myColor-0)",
+                },
+              }}
               {...addForm.getInputProps("highTempThreshold")}
             />
           </div>

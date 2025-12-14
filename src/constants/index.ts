@@ -13,46 +13,68 @@ export const CONSTANTS = {
   ICON_COLOR: "#6c451c",
   DEFAULT_PLANT_ICON_COLOR: "#0d5b15",
   PLANT_ICON_COLOR_SWATCHES: [
-    "#2e2e2e",
-    "#6c451c",
-    "#fa5252",
-    "#fd7e14",
-    "#fab005",
-    "#82c91e",
     "#0d5b15",
+    "#82c91e",
+    "#fab005",
+    "#fd7e14",
+    "#fa5252",
+    "#6c451c",
+    "#2e2e2e",
   ],
   ICON_MAP: {
-    "icon-plant": {
-      name: "icon-plant",
+    ICON_PLANT: {
+      name: "ICON_PLANT",
       icon: IconPlant,
     },
-    "icon-plant-2": {
-      name: "icon-plant-2",
+    "ICON_PLANT-2": {
+      name: "ICON_PLANT-2",
       icon: IconPlant2,
     },
-    "icon-cactus": {
-      name: "icon-cactus",
+    ICON_CACTUS: {
+      name: "ICON_CACTUS",
       icon: IconCactus,
     },
-    "icon-flower-filled": {
-      name: "icon-flower-filled",
+    ICON_FLOWER_FILLED: {
+      name: "ICON_FLOWER_FILLED",
       icon: IconFlowerFilled,
     },
-    "icon-leaf": {
-      name: "icon-leaf",
+    ICON_LEAF: {
+      name: "ICON_LEAF",
       icon: IconLeaf,
     },
-    "icon-leaf-2": {
-      name: "icon-leaf-2",
+    "ICON_LEAF-2": {
+      name: "ICON_LEAF-2",
       icon: IconLeaf2,
     },
-    "icon-seedling": {
-      name: "icon-seedling",
+    ICON_SEEDLING: {
+      name: "ICON_SEEDLING",
       icon: IconSeedling,
     },
-    "icon-growth": {
-      name: "icon-growth",
+    ICON_GROWTH: {
+      name: "ICON_GROWTH",
       icon: IconGrowth,
     },
   },
+  PLANT_LIGHT_OPTIONS: [
+    {
+      value: "FULL_SHADE",
+      label: "Full Shade",
+    },
+    {
+      value: "PARTIAL_SHADE",
+      label: "Partial Shade",
+    },
+    {
+      value: "FILTERED_LIGHT",
+      label: "Filtered Light",
+    },
+    {
+      value: "BRIGHT_INDIRECT",
+      label: "Bright Indirect Light",
+    },
+    {
+      value: "FULL_SUN",
+      label: "Full Sun",
+    },
+  ],
 };

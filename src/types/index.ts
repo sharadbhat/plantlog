@@ -1,10 +1,7 @@
-import type { CONSTANTS } from "../constants";
+import { CONSTANTS } from "../constants";
 
-export const SunlightExposure = {
-  SHADE: "Shade",
-  PARTIAL_SHADE: "Partial Shade",
-  FULL_SUN: "Full Sun",
-} as const;
+export type SunlightExposure =
+  (typeof CONSTANTS.PLANT_LIGHT_OPTIONS)[number]["value"];
 
 export type Plant = {
   id: string;
@@ -15,7 +12,7 @@ export type Plant = {
   description?: string;
   wateringFrequencyDays: number;
   lastWateredDate: Date;
-  sunlightExposure: typeof SunlightExposure;
+  sunlightExposure: SunlightExposure;
   lowTempThreshold?: number;
   highTempThreshold?: number;
 };

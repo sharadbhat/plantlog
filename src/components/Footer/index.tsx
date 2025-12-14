@@ -1,5 +1,4 @@
 import { IconSquareRoundedPlus } from "@tabler/icons-react";
-import { CONSTANTS } from "../../constants";
 import { openAddFormModal } from "../../utils/modalOpener";
 import classes from "./index.module.css";
 
@@ -11,7 +10,10 @@ const Footer = () => {
         role="button"
         onClick={openAddFormModal}
       >
-        <IconSquareRoundedPlus size={50} color={CONSTANTS.ICON_COLOR} />
+        <IconSquareRoundedPlus
+          size={50}
+          color={`var(--mantine-color-myColor-8)`}
+        />
       </div>
     </div>
   );

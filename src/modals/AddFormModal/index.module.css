@@ -1,3 +1,10 @@
+.formWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
 .modalButtons {
   display: flex;
   flex-direction: column;
@@ -16,15 +23,23 @@
   justify-content: center;
 }
 
+.actionIcon {
+  background-color: var(--mantine-color-myColor-0) !important;
+}
+
 .plantIconWrapper {
   display: inline-block;
   position: relative;
 }
 
+.iconMenuDropdown {
+  background-color: var(--mantine-color-myColor-0) !important;
+}
+
 .pencilIcon {
   position: absolute;
   border: 0.0625rem solid var(--mantine-color-default-border);
-  background-color: var(--mantine-color-default);
+  background-color: var(--mantine-color-myColor-0);
   bottom: -10px;
   right: -10px;
   border-radius: 50%;
@@ -41,4 +56,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.radioCard {
+  background-color: #fff7eb !important;
+  border-width: 1px !important;
+  border-color: #955f27 !important;
+  &[data-checked] {
+    border-width: 1px !important;
+    background-color: #ffe7c3 !important;
+  }
 }

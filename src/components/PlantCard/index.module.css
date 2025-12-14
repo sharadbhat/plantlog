@@ -1,5 +1,7 @@
 .card {
-  background-color: var(--mantine-color-body);
+  background-color: var(--mantine-color-myColor-0) !important;
+  border-color: var(--mantine-color-myColor-light-color) !important;
+  border-width: 3px !important;
 }
 
 .header {
@@ -9,8 +11,8 @@
   align-items: center;
   gap: 10px;
   padding: var(--mantine-spacing-sm) var(--mantine-spacing-md);
-  border-bottom: 1px solid
-    light-dark(var(--mantine-color-gray-2), var(--mantine-color-dark-5));
+  border-width: 2px !important;
+  border-bottom: 1px solid var(--mantine-color-myColor-light-color);
 }
 
 .icon {

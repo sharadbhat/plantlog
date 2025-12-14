@@ -1,3 +1,4 @@
+import { Flex } from "@mantine/core";
 import { usePlantStore } from "../../store";
 import PlantCard from "../PlantCard";
 
@@ -5,13 +6,11 @@ const CardList = () => {
   const plants = usePlantStore((state) => state.plants);
 
   return (
-    <div>
+    <Flex direction={"column"} gap={"10px"}>
       {plants.map((plant) => (
-        <div key={plant.id} style={{ marginBottom: "10px" }}>
-          <PlantCard {...plant} />
-        </div>
+        <PlantCard {...plant} />
       ))}
-    </div>
+    </Flex>
   );
 };
 
