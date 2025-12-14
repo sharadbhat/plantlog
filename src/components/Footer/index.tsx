@@ -11,7 +11,7 @@ const Footer = () => {
         onClick={openAddFormModal}
       >
         <IconSquareRoundedPlus
-          size={50}
+          size={60}
           color={`var(--mantine-color-myColor-8)`}
         />
       </div>

@@ -17,6 +17,7 @@ export const CONSTANTS = {
     "#82c91e",
     "#fab005",
     "#fd7e14",
+    "#fa93c5",
     "#fa5252",
     "#6c451c",
     "#2e2e2e",

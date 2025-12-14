@@ -11,6 +11,7 @@ import {
   ColorPicker,
   Radio,
   Text,
+  Divider,
 } from "@mantine/core";
 import { DatePickerInput } from "@mantine/dates";
 import { useForm } from "@mantine/form";
@@ -179,8 +180,10 @@ const AddFormModal = ({ context, id }: ContextModalProps) => {
           size="lg"
           value={tryingOutIconColor}
           onChange={setTryingOutIconColor}
+          swatchesPerRow={4}
           swatches={[...CONSTANTS.PLANT_ICON_COLOR_SWATCHES]}
         />
+        <Divider />
         {iconMapRows.map((row, index) => (
           <Flex direction={"row"} justify={"space-between"} key={index}>
             {row.map((icon) => (
@@ -189,7 +192,7 @@ const AddFormModal = ({ context, id }: ContextModalProps) => {
                 className={classes.iconWrapper}
                 onClick={() => setIconAndColor(icon)}
               >
-                <icon.icon color={tryingOutIconColor} size={40} />
+                <icon.icon color={tryingOutIconColor} size={50} />
               </div>
             ))}
           </Flex>
@@ -225,13 +228,16 @@ const AddFormModal = ({ context, id }: ContextModalProps) => {
                     <div onClick={() => setMenuOpened(true)}>
                       <ActionIcon
                         variant="default"
-                        size={"input-xl"}
+                        size={80}
                         className={classes.actionIcon}
                       >
-                        <chosenIcon.icon color={chosenIconColor} size={40} />
+                        <chosenIcon.icon color={chosenIconColor} size={60} />
                       </ActionIcon>
                       <div className={classes.pencilIcon}>
-                        <IconPencil size={20} />
+                        <IconPencil
+                          color="var(--mantine-color-myColor-8)"
+                          size={20}
+                        />
                       </div>
                     </div>
                   </Menu.Target>
