@@ -43,11 +43,11 @@
   bottom: -10px;
   right: -10px;
   border-radius: 50%;
-  width: 25px;
-  height: 25px;
+  width: 35px;
+  height: 35px;
   display: flex;
   flex-direction: column;
-  justify-self: center;
+  justify-content: center;
   align-items: center;
 }
 
@@ -60,10 +60,9 @@
 
 .radioCard {
   background-color: #fff7eb !important;
-  border-width: 1px !important;
+  border-width: 3px !important;
   border-color: #955f27 !important;
   &[data-checked] {
-    border-width: 1px !important;
     background-color: #ffe7c3 !important;
   }
 }

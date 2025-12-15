@@ -12,6 +12,8 @@ import {
   Radio,
   Text,
   Divider,
+  Grid,
+  GridCol,
 } from "@mantine/core";
 import { DatePickerInput } from "@mantine/dates";
 import { useForm } from "@mantine/form";
@@ -35,13 +37,16 @@ const AddFormModal = ({ context, id }: ContextModalProps) => {
     CONSTANTS.DEFAULT_PLANT_ICON_COLOR
   );
   const [menuOpened, setMenuOpened] = useState(false);
+  const [customWateringInterval, setCustomWateringInterval] =
+    useState<string>("-1");
+
   const { addPlant } = useAddPlant();
 
   const addForm = useForm({
     initialValues: {
       name: "",
       description: "",
-      wateringInterval: 7,
+      wateringInterval: "7",
       lastWateredDate: new Date(),
       sunlightExposure: CONSTANTS.PLANT_LIGHT_OPTIONS[0].value,
       lowTempThreshold: 50,
@@ -55,8 +60,7 @@ const AddFormModal = ({ context, id }: ContextModalProps) => {
       } else if (activeStep === 1) {
         return {
           wateringInterval:
-            values.wateringInterval < 1 ||
-            !Number.isInteger(values.wateringInterval)
+            Number(values.wateringInterval) < 1
               ? "Must be greater than 0 and an integer"
               : null,
         };
@@ -92,7 +96,7 @@ const AddFormModal = ({ context, id }: ContextModalProps) => {
       iconColor: chosenIconColor,
       name: values.name,
       description: values.description,
-      wateringFrequencyDays: values.wateringInterval,
+      wateringFrequencyDays: Number(values.wateringInterval) || 7,
       lastWateredDate: values.lastWateredDate,
       sunlightExposure: values.sunlightExposure,
       lowTempThreshold: values.lowTempThreshold,
@@ -236,7 +240,7 @@ const AddFormModal = ({ context, id }: ContextModalProps) => {
                       <div className={classes.pencilIcon}>
                         <IconPencil
                           color="var(--mantine-color-myColor-8)"
-                          size={20}
+                          size={27}
                         />
                       </div>
                     </div>
@@ -276,19 +280,69 @@ const AddFormModal = ({ context, id }: ContextModalProps) => {
         <Stepper.Step>
           <Flex direction={"column"} gap={"lg"}>
             <div>How often do you water it?</div>
-            <NumberInput
-              label="Watering Frequency (days)"
-              placeholder="Enter watering frequency in days"
-              min={1}
+            <Radio.Group
               key={addForm.key("wateringInterval")}
-              size="lg"
-              styles={{
-                input: {
-                  backgroundColor: "var(--mantine-color-myColor-0)",
-                },
-              }}
               {...addForm.getInputProps("wateringInterval")}
-            />
+            >
+              <Grid gutter={"md"}>
+                {CONSTANTS.WATERING_FREQUENCY_OPTIONS.map((option) =>
+                  option.value === "-1" ? (
+                    <Grid.Col span={12}>
+                      <Radio.Card
+                        p={"md"}
+                        radius={"md"}
+                        key={option.value}
+                        className={classes.radioCard}
+                        value={customWateringInterval}
+                      >
+                        <Flex direction={"row"} gap={10} align={"center"}>
+                          <Text>Every</Text>
+                          <NumberInput
+                            leftSectionWidth={0}
+                            rightSectionWidth={0}
+                            placeholder="7"
+                            min={1}
+                            key={addForm.key("wateringInterval")}
+                            size="lg"
+                            w={50}
+                            styles={{
+                              input: {
+                                padding: 0,
+                                backgroundColor:
+                                  "var(--mantine-color-myColor-0)",
+                                textAlign: "center",
+                              },
+                              controls: {
+                                display: "none",
+                              },
+                            }}
+                            onChange={(value) => {
+                              addForm
+                                .getInputProps("wateringInterval")
+                                .onChange(value.toString());
+                              setCustomWateringInterval(value.toString());
+                            }}
+                          />
+                          <Text>days</Text>
+                        </Flex>
+                      </Radio.Card>
+                    </Grid.Col>
+                  ) : (
+                    <GridCol span={6}>
+                      <Radio.Card
+                        p={"md"}
+                        radius={"md"}
+                        key={option.value}
+                        className={classes.radioCard}
+                        value={option.value}
+                      >
+                        {option.label}
+                      </Radio.Card>
+                    </GridCol>
+                  )
+                )}
+              </Grid>
+            </Radio.Group>
             <div>When was it last watered?</div>
             <DatePickerInput
               label="Last Watered Date"

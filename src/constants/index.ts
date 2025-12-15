@@ -78,4 +78,34 @@ export const CONSTANTS = {
       label: "Full Sun",
     },
   ],
+  WATERING_FREQUENCY_OPTIONS: [
+    {
+      value: "1",
+      label: "Daily",
+    },
+    {
+      value: "7",
+      label: "Weekly",
+    },
+    {
+      value: "3",
+      label: "Twice a week",
+    },
+    {
+      value: "14",
+      label: "Every 2 weeks",
+    },
+    {
+      value: "21",
+      label: "Every 3 weeks",
+    },
+    {
+      value: "30",
+      label: "Monthly",
+    },
+    {
+      value: "-1",
+      label: "Custom",
+    },
+  ],
 };
