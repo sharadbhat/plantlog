@@ -51,7 +51,6 @@ function App() {
           </AppShell.Header>
           <AppShell.Main>
             <CardList />
-            {(navigator as any)?.brave?.isBrave?.()}
           </AppShell.Main>
           <AppShell.Footer
             withBorder={false}
