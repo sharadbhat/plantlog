@@ -5,7 +5,8 @@ import { useEffect, useState } from "react";
 
 const CardList = () => {
   const plants = usePlantStore((state) => state.plants);
-  const [isBrave, setIsBrave] = useState(false);
+
+  const [isBrave, setIsBrave] = useState<boolean | null>(null);
 
   useEffect(() => {
     const checkBrave = async () => {
@@ -16,6 +17,8 @@ const CardList = () => {
       if (navigatorWithBrave.brave?.isBrave) {
         const result = await navigatorWithBrave.brave.isBrave();
         setIsBrave(result);
+      } else {
+        setIsBrave(false);
       }
     };
 
@@ -24,7 +27,11 @@ const CardList = () => {
 
   return (
     <Flex direction="column" gap="10px">
-      {isBrave && <div>Running in Brave Browser</div>}
+      {isBrave !== null && (
+        <div>
+          {isBrave ? "Running in Brave Browser" : "Not Brave Browser"}
+        </div>
+      )}
 
       {plants.map((plant) => (
         <PlantCard key={plant.id} {...plant} />
