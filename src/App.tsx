@@ -51,6 +51,7 @@ function App() {
           </AppShell.Header>
           <AppShell.Main>
             <CardList />
+            {window.navigator?.userAgent}
           </AppShell.Main>
           <AppShell.Footer
             withBorder={false}
