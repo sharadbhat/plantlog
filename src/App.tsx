@@ -51,7 +51,7 @@ function App() {
           </AppShell.Header>
           <AppShell.Main>
             <CardList />
-            {window.navigator?.userAgent}
+            {await navigator.brave?.isBrave()}
           </AppShell.Main>
           <AppShell.Footer
             withBorder={false}
